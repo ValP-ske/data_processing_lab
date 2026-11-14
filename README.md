@@ -3,6 +3,7 @@
 This lab focused on basic object-oriented data processing in Python, demonstrating how. to load table data from a `.csv` file into a memory and preform simple data analysis operation without using externalm data libraries like pandas.
 ## Project Structure
 * `Cities.csv`: a dataset containing city, country, latitude, longitude, temperature.
+* `Countries.csv`: a dataset containing country, population, EU, coastline.
 * `data_processing_lab.py`: The main Python script containing the `DataLoader` and the `Table` class, along with example code that analyze the city dataset
 
 ## DataLoader Class
@@ -12,12 +13,21 @@ Located in `data_processing_lab.py`, the `DataLoader` class includes:
 ### Method
 * `load_csv` (filename): Read the specified `.csv` file from `Base_path` and return as a list of dictionaries.
 
+## DB Class
+Located in `data_processing_lab.py`, the `DB` class includes:
+### Attribute
+* `tables` (dictionary): Maps each table's name to its `Table` object.
+### Method
+* `insert` (table): Adds a `Table` to the database.
+* `search` (name): Returns the `Table` with the given name, or `None` if it doesn't exist.
+
 ## Table Class
-also located in `data_processing_lab.py`, the `Table` class includes:
+Located in `data_processing_lab.py`, the `Table` class includes:
 ### Attribute
 * `name` (str): The name identifier for the table (e.g., `'cities'`)
 * `table` (list): list of dictionaries of the `.csv` file , representing the rows and columns of the dataset
 ### Method
+* `join(other, column)`: Returns a new `Table` combining rows from both tables that share the same value in `column`.
 * `filter(condition)`: filter the wanted value in the `table`
 * `aggregate(function, column)`:  analyze and calculate from the specified `column` and applied an aggregation `function` to the resulting list or value
 
